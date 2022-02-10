@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('admin.partials.header')
+@extends('admin.partials.Authaside')
 
-@section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -74,4 +74,4 @@
         </div>
     </div>
 </div>
-@endsection
+@include('admin.partials.script')

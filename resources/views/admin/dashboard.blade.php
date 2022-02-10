@@ -1,6 +1,8 @@
-@include('partials.header')
-@include('partials.navbar')
-@include('partials.aside')
-@include('partials.content')
-@include('partials.footer')
-@include('partials.script')
+@extends('layouts.master')
+
+@section('title')
+@endsection
+@section('content')
+@endsection
+@section('script')
+@endsection
