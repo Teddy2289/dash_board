@@ -1,3 +1,4 @@
+
 @extends('layouts.master')
 @section('title')
 @endsection
@@ -9,51 +10,11 @@
         <div class="card-header">
             <h4>Tableau des utilisatuers</h4>
         </div>
-        @if (session('status'))
-        <div class="alert alert-success alert-dismissible show fade" role="alert">
-                <div class="alert-body">
-                    <button class="close" data-dismiss="alert">
-                        <span>×</span>
-                    </button>
-                    {{ session('status') }}
-                </div>
-        </div>
-        @endif
-        <div class="card-body p-0 ">
-            <table class="table text-center">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">type</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Nationality</th>
-                    <th scope="collapse-2">Action</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($user as $row)
-                <tr>
+        <div class="card-body p-2" id="show_all_employees">
 
-                    <th scope="row">{{ $row->id }}</th>
-                    <td>{{ $row->name }}</td>
-                    <td>{{ $row->email }}</td>
-                    <td>{{ $row->is_admin }}</td>
-                    <td>{{ $row->gender }}</td>
-                    <td>{{ $row->nationality }}</td>
-                    <td>
-                        <a href="/list_users" class="btn btn-icon icon-left btn-info"><i class="fas fa-info-circle"></i>Voir</a>
-                        <a href="/edit-user/{{$row->id}}" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i>Edite</a>
-                        <a href="#" data-toggle="modal" class="btn btn-icon icon-left btn-danger" data-target="#basicModal"><i class="fas fa-times"></i> Delete</a>
-                    </td>
-                </tr>
-                @endforeach
-                </tbody>
-            </table>
         </div>
     </div>
+
     <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -64,7 +25,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/delete_user/{{$row->id}}" method="post">
+                    <form action="" method="post">
                         <div class="modal-body">
                             {{csrf_field()}}
                             {{method_field('DELETE')}}
@@ -93,17 +54,61 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form  action="{{url('create_user')}}" method="post" enctype="multipart/form-data" >
+                    <form  action="" method="post" id="add_employer" enctype="multipart/form-data" >
                         @csrf
                         <div class="form-group">
-                            <label>Username</label>
+                            <label>Firstname</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="fas fa-envelope"></i>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Name" name="name">
+                                <input type="text" class="form-control" placeholder="first_name" name="first_name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>last_name</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" placeholder="last_name" name="last_name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>telephone</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" placeholder="telephone" name="telephone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>post</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" placeholder="post" name="post">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>avatar</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
+                                <input type="file" class="form-control" placeholder="post" name="avatar">
                             </div>
                         </div>
                         <div class="form-group">
@@ -117,55 +122,65 @@
                                 <input type="email" class="form-control" placeholder="Email" name="email">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                </div>
-                                <select name="gender" class="form-control" id="">
-                                    <option value="Masculin">M</option>
-                                    <option value="Feminin">F</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Nationality</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-item">
-                                        <input class="form-control" id="country_selector" name="nationality" type="text">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-lock"></i>
-                                    </div>
-                                </div>
-                                <input type="password" class="form-control" placeholder="Password" name="password">
-                            </div>
-                        </div>
-                        <div class="form-group mb-0">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="remember" class="custom-control-input" id="remember-me">
-                                <label class="custom-control-label" for="remember-me">Remember Me</label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
+                        <button type="submit" id="add_employer_btn" class="btn btn-primary m-t-15 waves-effect">Save</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
 @section('script')
+    <script>
+        //fetch all data
+        // fetch all employees ajax request
+        fetchAllEmployees();
+
+        function fetchAllEmployees() {
+            $.ajax({
+                url: '{{ route('fetchAll') }}',
+                method: 'get',
+                success: function(response) {
+                    $("#show_all_employees").html(response);
+                    $("table").DataTable({
+                        order: [0, 'desc']
+                    });
+                }
+            });
+        }
+
+
+
+
+
+
+        // add new employee ajax request
+        $("#add_employer").submit(function(e) {
+            e.preventDefault();
+            const fd = new FormData(this);
+            $("#add_employer_btn").text('Adding...');
+            $.ajax({
+                url: '{{ route('store') }}',
+                method: 'POST',
+                data: fd,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status == 200) {
+                        Swal.fire(
+                            'Updated!',
+                            'Employee Updated Successfully!',
+                            'success'
+                        )
+                        fetchAllEmployees();
+                    }
+                    $("#edit_employee_btn").text('Update Employee');
+                    $("#edit_employee_form")[0].reset();
+                    $("#editEmployeeModal").modal('hide');
+                }
+            });
+        });
+    </script>
 @endsection

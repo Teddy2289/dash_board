@@ -40,31 +40,13 @@ class dashBoardController extends Controller
     }
 
     public function create(Request $request) {
-        // 1. La validation
-        $this->validate($request, [
-            "name" => 'bail|required|string|max:255',
-            "email" => 'bail|required|string|max:255',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            "gender" => 'bail|required',
-            "nationality" => 'bail|required',
-        ]);
-
-        // 2. On upload l'image dans "/storage/app/public/posts"
-
-        $name = $request->file('image')->getClientOriginalName();
-
-        $path = $request->file('image')->store('public/posts');
-
-        // 3. On enregistre les informations du Post
-        User:create([
-            "name" => $request->name,
-            "email" => $request->email,
-            "image" => $chemin_image,
-            "gender" => $request->gender,
-            "nationality" => $request->nationality,
-        ]);
-
-        // 4. On retourne vers tous les posts : route("posts.index")
+        $user = new  User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->gender = $request->input('gender');
+        $user->nationality = $request->input('nationality');
+        $user->password = $request->input('password');
+   $user->save();
         return redirect(route("user"));
     }
 }

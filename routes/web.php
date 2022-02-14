@@ -31,7 +31,13 @@ Route::group(['middleware'=>['auth','is_admin']],function (){
     Route::get('/list_users',[App\Http\Controllers\dashBoardController::class,'list_user' ])->name('list_users');
     Route::put('/update_user/{id}',[App\Http\Controllers\dashBoardController::class,'update_user' ])->name('update_user');
     Route::delete('/delete_user/{id}',[App\Http\Controllers\dashBoardController::class,'delete_users' ])->name('delete_user');
-    Route::post('/create/',[App\Http\Controllers\dashBoardController::class,'create' ])->name('create');
+    Route::post('/create_user/',[App\Http\Controllers\dashBoardController::class,'create' ])->name('create_user');
+
+    ######### Employer ########
+    Route::get('/employer',[App\Http\Controllers\EmployerController::class,'index'])->name('employer');
+    Route::post('/store',[App\Http\Controllers\EmployerController::class,'store'])->name('store');
+    Route::get('/fetchAll',[App\Http\Controllers\EmployerController::class,'fetchAll'])->name('fetchAll');
+
 });
 
 

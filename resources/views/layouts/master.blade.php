@@ -16,6 +16,11 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
     <link rel='shortcut icon' type='image/x-icon' href='{{asset('assets/img/favicon.ico')}}' />
+    <link rel="stylesheet" href="{{asset('assets/build/css/countrySelect.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/build/css/demo.css')}}">
+    <link href="{{mix('css/app.css')}}" rel="stylesheet" data-turbolinks-track="true">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.4/datatables.min.css"/>
+
 </head>
 
 <body>
@@ -191,8 +196,8 @@
                         <a href="#" class="menu-toggle nav-link has-dropdown"><i
                                 data-feather="briefcase"></i><span>Widgets</span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="/user">Chart Widgets</a></li>
-                            <li><a class="nav-link" href="widget-data.html">Data Widgets</a></li>
+                            <li><a class="nav-link" data-turbolinks="false"  href="{{route('user')}}">User</a></li>
+                            <li><a class="nav-link" data-turbolinks="false" href="{{route('employer')}}">Employer</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -234,6 +239,10 @@
 <script src="{{asset('assets/js/scripts.js')}}"></script>
 <!-- Custom JS File -->
 <script src="{{asset('assets/js/custom.js')}}"></script>
+<script src="{{asset('assets/build/js/countrySelect.js')}}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.4/datatables.min.js"></script>
 @yield('script')
 </body>
 

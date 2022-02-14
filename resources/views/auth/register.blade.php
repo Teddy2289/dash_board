@@ -24,6 +24,36 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('Gender') }}</label>
+
+                            <div class="col-md-6">
+
+                                <select name="gender" class="form-control" id="">
+                                    <option value="Masculin">M</option>
+                                    <option value="Feminin">F</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="nationality" class="col-md-4 col-form-label text-md-end">{{ __('Nationality') }}</label>
+
+                            <div class="col-md-6">
+                                <div class="form-item">
+                                    <input id="country_selector" name="nationality" type="text">
+                                    <label for="country_selector" style="display:none;">Select a country here...</label>
+                                </div>
+                            </div>
+                        </div>
+                        {{--<div class="row mb-3">
+                            <label for="nationality" class="col-md-4 col-form-label text-md-end">{{ __('Photo') }}</label>
+
+                            <div class="col-md-6">
+                                <div class="form-item">
+                                    <input  type="file"  name="image" class="form-control">
+                                </div>
+                            </div>
+                        </div>--}}
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
@@ -74,4 +104,5 @@
         </div>
     </div>
 </div>
+
 @include('admin.partials.script')

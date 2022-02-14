@@ -10,4 +10,6 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
+    <link rel="stylesheet" href="assets/build/css/countrySelect.css">
+    <link rel="stylesheet" href="assets/build/css/demo.css">
 </head>
